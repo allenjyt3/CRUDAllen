@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+
+<div>
+    @Html.Label("Id")
+    <div>
+        @Html.TextBox("name")
+    </div>
+</div>
+
+<div>
+    <input type="button" value="Search" id="btnSearch" />
+</div>
+
+<div id="divResult"></div>
+@section scripts{
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnSearch').click(function(){
+            $.ajax({
+                url: "/Employee/SearchResults",
+                data:{id:$('#name').val()},
+                success:function(result)
+                {
+                   // $('#divResult').html($(this).val());
+
+                    $('#divResult').html(result);
+                }
+            });
+        });
+    });
+    </script>
+}
+
+
+
+
